@@ -1,0 +1,16 @@
+{
+  "name": "iPretty Salão & Beleza",
+  "short_name": "iPretty",
+  "description": "Agendamento, vitrine de produtos, recepção e gestão de repasses do salão.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F7F3EE",
+  "theme_color": "#1F1815",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

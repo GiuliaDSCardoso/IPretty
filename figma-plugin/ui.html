@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <style>
+    :root {
+      --bg: #FAF7F2;
+      --surface: #FFFFFF;
+      --ink: #1F1815;
+      --muted: #5A4F48;
+      --border: #E3DBD0;
+      --terracotta: #B85D43;
+      --terracotta-dark: #9F4D35;
+      --sage: #38664E;
+      --sage-soft: #E3EFE8;
+      --blush: #F6E6E0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 16px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .header {
+      background: var(--ink);
+      color: #FAF7F2;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+    .eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #E39A83;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .title {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 0 0 4px 0;
+    }
+    .sub {
+      font-size: 11px;
+      color: #D3C8BF;
+      margin: 0;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    .card-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn {
+      width: 100%;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: opacity 0.15s ease, background 0.15s ease;
+    }
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .btn-primary {
+      background: var(--terracotta);
+      color: #FFFFFF;
+      margin-bottom: 8px;
+    }
+    .btn-primary:hover:not(:disabled) { background: var(--terracotta-dark); }
+    .grid-btns {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    .btn-secondary {
+      background: #FFFFFF;
+      color: var(--ink);
+      border-color: var(--border);
+      font-weight: 600;
+    }
+    .btn-secondary:hover:not(:disabled) {
+      background: #F4EFE9;
+    }
+    .pill {
+      font-size: 10px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.22);
+      font-weight: 600;
+    }
+    .btn-secondary .pill {
+      background: var(--blush);
+      color: #8F3F29;
+    }
+    .btn-secondary.sage .pill {
+      background: var(--sage-soft);
+      color: var(--sage);
+    }
+    .status-box {
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #FFFFFF;
+      padding: 10px 12px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .status-box strong {
+      display: block;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+    .bar-wrap {
+      height: 6px;
+      border-radius: 999px;
+      background: #EFE9E1;
+      overflow: hidden;
+      margin-top: 8px;
+      display: none;
+    }
+    .bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--terracotta);
+      transition: width 0.2s ease;
+    }
+  </style>
+</head>
+<body>
+  <div id="plugin-root">
+    <div class="header">
+      <div class="eyebrow">iPretty · Studio Export</div>
+      <h1 class="title">Gerador Direto no Figma</h1>
+      <p class="sub">Cria camadas 100% editáveis (Auto Layout, estilos, tokens, 48 frames e ligações de protótipo).</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Opções do Protótipo</div>
+      <label class="check-row">
+        <input type="checkbox" id="wireFlows" checked />
+        <span>Conectar botões e popups no Modo Protótipo</span>
+      </label>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Gerar Camadas Editáveis</div>
+      <button class="btn btn-primary" data-scope="all">
+        <span>Gerar Tudo (Identidade + 48 Telas)</span>
+        <span class="pill">Completo</span>
+      </button>
+
+      <div class="grid-btns">
+        <button class="btn btn-secondary" data-scope="tokens">
+          <span>00 · Identidade Visual, Cores &amp; UI Kit</span>
+          <span class="pill">Tokens</span>
+        </button>
+        <button class="btn btn-secondary" data-scope="mobile">
+          <span>01 · Mobile Studio (Cliente + PWA + Popups)</span>
+          <span class="pill">23 frames</span>
+        </button>
+        <button class="btn btn-secondary sage" data-scope="desktop">
+          <span>02 · Desktop Studio (Recepção + Admin + Popups)</span>
+          <span class="pill">25 frames</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="status-box" id="statusBox">
+      <strong id="statusTitle">Pronto para gerar no Figma</strong>
+      <span id="statusDetail">Escolha "Gerar Tudo" ou uma seção individual acima.</span>
+      <div class="bar-wrap" id="barWrap">
+        <div class="bar-fill" id="barFill"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const buttons = Array.from(document.querySelectorAll('button[data-scope]'));
+    const wireCheckbox = document.getElementById('wireFlows');
+    const statusTitle = document.getElementById('statusTitle');
+    const statusDetail = document.getElementById('statusDetail');
+    const barWrap = document.getElementById('barWrap');
+    const barFill = document.getElementById('barFill');
+
+    function setBusy(busy) {
+      buttons.forEach((b) => { b.disabled = busy; });
+    }
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const scope = btn.getAttribute('data-scope');
+        setBusy(true);
+        barWrap.style.display = 'block';
+        barFill.style.width = '8%';
+        statusTitle.textContent = 'Gerando camadas editáveis...';
+        statusDetail.textContent = 'Carregando fontes e montando estrutura no Figma.';
+        parent.postMessage({
+          pluginMessage: {
+            type: 'generate',
+            scope,
+            wireFlows: wireCheckbox.checked
+          }
+        }, '*');
+      });
+    });
+
+    window.onmessage = (event) => {
+      const msg = event.data && event.data.pluginMessage;
+      if (!msg) return;
+      if (msg.type === 'progress') {
+        barWrap.style.display = 'block';
+        barFill.style.width = Math.max(5, Math.min(100, msg.percent || 0)) + '%';
+        statusTitle.textContent = msg.title || 'Gerando...';
+        statusDetail.textContent = msg.detail || '';
+      } else if (msg.type === 'done') {
+        setBusy(false);
+        barWrap.style.display = 'block';
+        barFill.style.width = '100%';
+        statusTitle.textContent = msg.title || 'Concluído!';
+        statusDetail.textContent = msg.detail || '';
+      } else if (msg.type === 'error') {
+        setBusy(false);
+        barWrap.style.display = 'none';
+        statusTitle.textContent = 'Erro ao gerar';
+        statusDetail.textContent = msg.detail || 'Verifique o console do plugin.';
+      }
+    };
+  </script>
+</body>
+</html>
